@@ -5,7 +5,7 @@ import {creatBottomTabNavigator} from "@react-navigation/bottom-tabs"
 const Tab = createBottomTabNavigator();
 
 const MainTabNavigator = (props) => {
-    const {currentUser} = props
+    const {currentUser,logoutHandler} = props
 
     return (
         <Tab.Navigator

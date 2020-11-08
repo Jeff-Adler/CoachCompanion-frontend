@@ -13,6 +13,18 @@ class App extends React.Component {
     isSignedIn: false
   }
 
+  loginHandler = (userData) => {
+    this.setState({ user: userData, isSignedIn: true });
+  };
+
+  signupHandler = (userData) => {
+    this.setState({ user: userData });
+  };
+
+  logoutHandler = () => {
+    this.setState({ user: null, isSignedIn: false });
+  };
+
   render () {
     const {isSignedIn , user} = this.state
     return (
