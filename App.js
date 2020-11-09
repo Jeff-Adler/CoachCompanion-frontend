@@ -15,6 +15,14 @@ class App extends React.Component {
     isSignedIn: false
   }
 
+  async storeToken(jwt) {
+    try {
+      await AsyncStorage.setItem("token", jwt);
+    } catch (error) {
+      console.log("Something went wrong", error);
+    }
+  }
+
   loginHandler = (userInfo) => {
     const configObj = {
       method: "POST",
