@@ -7,22 +7,75 @@ import { NavigationContainer } from "@react-navigation/native";
 import MainTabNavigator from "./src/navigation/MainTabNavigator";
 import LoginStackNavigator from "./src/navigation/LoginStackNavigator";
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 class App extends React.Component {
   state = {
     user: null,
     isSignedIn: false
   }
 
-  loginHandler = (userData) => {
-    this.setState({ user: userData, isSignedIn: true });
+  loginHandler = (userInfo) => {
+    const configObj = {
+      method: "POST",
+      headers: {
+        accepts: "application/json",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ user: userInfo }),
+    };
+
+    fetch("http://localhost:3000/api/v1/login", configObj)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.jwt) {
+          this.storeToken(data.jwt);
+          this.setState({ user: data.user, isSignedIn: true });
+        } 
+        // else {
+        //   this.setState({ authenticationError: data.message });
+        // }
+      });
   };
 
-  signupHandler = (userData) => {
-    this.setState({ user: userData });
+  signupHandler = (userObj) => {
+    const configObj = {
+      method: "POST",
+      headers: {
+        accepts: "application/json",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ user: userObj }),
+    };
+
+    fetch("http://localhost:3000/api/v1/users", configObj)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.jwt) {
+          this.setState(
+            {
+              user: data.user,
+            },
+            () => {
+              this.loginHandler(userObj);
+            }
+          );
+        } 
+        // else {
+        //   this.setState({
+        //     signupError: data.error,
+        //   });
+        // }
+      });
   };
 
-  logoutHandler = () => {
-    this.setState({ user: null, isSignedIn: false });
+  logoutHandler = async () => {
+    try {
+      await AsyncStorage.removeItem("token");
+      this.setState({ isSignedIn: false });
+    } catch (exception) {
+      console.log("Couldn't logout");
+    }
   };
 
   render () {
