@@ -13,12 +13,10 @@ const LoginStackNavigator = (props) => {
   return (
     <LoginStack.Navigator style={styles.container} initialRouteName="Login">
       <LoginStack.Screen name="Login">
-      {/* Might need to insert {...props} */}
-        {(props) => <Login loginHandler={loginHandler} />}
+        {(props) => <Login {...props} loginHandler={loginHandler} />}
       </LoginStack.Screen>
       <LoginStack.Screen name="Signup">
-      {/* Might need to insert {...props} */}
-        {(props) => <Signup signupHandler={signupHandler} />}
+        {(props) => <Signup {...props} signupHandler={signupHandler} />}
       </LoginStack.Screen>
     </LoginStack.Navigator>
   );

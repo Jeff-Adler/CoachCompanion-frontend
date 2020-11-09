@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, View, StyleSheet } from "react-native";
-import { Input } from "react-native-elements";
+import { View, StyleSheet } from "react-native";
+import { Input, Button } from "react-native-elements";
 
 class Login extends React.Component {
   state = {
@@ -27,7 +27,7 @@ class Login extends React.Component {
           value={password}
         />
         <Button title="Submit" onPress={() => loginHandler(this.state)} />
-        <Button title="Sign-up" onPress={() => navigation.navigate("Signup")} />
+        <Button title="Sign-up" type="clear" onPress={() => navigation.navigate("Signup")} />
       </View>
     );
   }
