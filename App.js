@@ -40,7 +40,7 @@ class App extends React.Component {
               </NavigationContainer>
             </View>
           ) : (
-            <View>
+            <View style = {styles.container}> 
               <NavigationContainer>
                 <LoginStackNavigator
                   loginHandler={this.loginHandler}
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
