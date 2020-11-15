@@ -92,7 +92,7 @@ class App extends React.Component {
       <View style = {styles.container}>
         {
           isSignedIn === true ? (
-            <View>
+            <View style = {styles.container}>
               <NavigationContainer>
                 <MainTabNavigator
                   currentUser={user}
