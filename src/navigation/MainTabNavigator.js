@@ -1,5 +1,10 @@
 import React from "react"
 
+import { StyleSheet } from "react-native";
+
+import LoggerContainer from '../containers/LoggerContainer'
+import ProfileContainer from '../containers/ProfileContainer'
+
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
 const Tab = createBottomTabNavigator();
@@ -26,12 +31,21 @@ const MainTabNavigator = (props) => {
             //     inactiveTintColor: "gray",
             // }}
         >
-            <Tab.Screen name="Log Activity"/>
+            <Tab.Screen name="Log Activity" component={LoggerContainer}/>
             {/* <Tab.Screen name="Receive Coaching" /> */}
             {/* <Tab.Screen name="Input Activity" /> */}
-            <Tab.Screen name="Profile" />
+            <Tab.Screen name="Profile" component={ProfileContainer}/>
         </Tab.Navigator>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  });
 
 export default MainTabNavigator;
