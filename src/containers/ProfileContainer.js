@@ -2,6 +2,9 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
 class ProfileContainer extends React.Component {
+
+    //input request to retrieve all posts from the week
+
     render() {
         return (
             <View style={styles.container}>

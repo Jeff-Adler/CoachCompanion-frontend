@@ -3,6 +3,8 @@ import { StyleSheet, View, Text } from "react-native";
 
 class LoggerContainer extends React.Component {
 
+    //input POST request to input new log
+
     render() {
         return (
             <View style={styles.container}>
