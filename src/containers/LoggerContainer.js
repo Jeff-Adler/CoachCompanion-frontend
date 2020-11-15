@@ -17,6 +17,7 @@ class LoggerContainer extends React.Component {
         // t.index ["user_id"], name: "index_activities_on_user_id"
     // end
 
+
     render() {
         return (
             <View style={styles.container}>
