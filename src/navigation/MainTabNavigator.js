@@ -27,8 +27,8 @@ const MainTabNavigator = (props) => {
             // }}
         >
             <Tab.Screen name="Log Activity"/>
-            <Tab.Screen name="Receive Coaching" />
-            <Tab.Screen name="Input Activity" />
+            {/* <Tab.Screen name="Receive Coaching" /> */}
+            {/* <Tab.Screen name="Input Activity" /> */}
             <Tab.Screen name="Profile" />
         </Tab.Navigator>
     )
