@@ -4,8 +4,8 @@ import { Input, Button } from "react-native-elements";
 
 class Login extends React.Component {
   state = {
-    username: "",
-    password: "",
+    username: "JeffAdler",
+    password: "blink2002",
   };
 
   onChangeText = (name) => (text) => this.setState({ [name]: text });
