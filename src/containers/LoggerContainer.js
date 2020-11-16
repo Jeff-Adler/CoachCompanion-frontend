@@ -6,16 +6,11 @@ class LoggerContainer extends React.Component {
     state = {activities: null}
     //input POST request to input new log
 
-    //input GET request to get list of user's activities, to be rendered
-    // 3000/activities
-
-    componentDidMount () {
-        // const token = await this.props.getToken();
-        const token = this.props.getToken();
+    async componentDidMount () {
+        const token = await this.props.getToken();
         this.fetchActivities(token);
     }
 
-    
     fetchActivities = (token) => {
         const configObj = {
             method: "GET",
@@ -23,7 +18,7 @@ class LoggerContainer extends React.Component {
                 Authorization: `Bearer ${token}`,
             }
         }
-        fetch(`http://localhost:3000/api/v1/user/${this.props.currentUser.id}/activities`, configObj)
+        fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/activities`, configObj)
             .then((response) => response.json())
             .then((data) => {
                 this.setState({activities : data})
@@ -34,9 +29,11 @@ class LoggerContainer extends React.Component {
         const {activities} = this.state
         return (
             <View style={styles.container}>
+            { this.state.activities ?
                 <LoggerStackNavigator 
                     activities={activities}
                 />
+            : null }
             </View>
         )
     }
