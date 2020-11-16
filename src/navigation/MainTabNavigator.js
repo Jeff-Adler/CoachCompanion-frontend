@@ -10,7 +10,7 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 const Tab = createBottomTabNavigator();
 
 const MainTabNavigator = (props) => {
-    const {currentUser,logoutHandler} = props
+    const {currentUser,logoutHandler,getToken} = props
 
     return (
         <Tab.Navigator
@@ -31,7 +31,12 @@ const MainTabNavigator = (props) => {
             //     inactiveTintColor: "gray",
             // }}
         >
-            <Tab.Screen name="Log Activity" component={LoggerContainer}/>
+            <Tab.Screen 
+                name="Log Activity" component={LoggerContainer}
+                children={() => (
+                    <LoggerContainer currentUser={currentUser} getToken={getToken}/>
+                )}
+            />
             {/* <Tab.Screen name="Receive Coaching" /> */}
             {/* <Tab.Screen name="Input Activity" /> */}
             <Tab.Screen name="Profile" component={ProfileContainer}/>

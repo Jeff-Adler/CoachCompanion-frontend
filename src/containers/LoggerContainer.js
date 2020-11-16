@@ -9,26 +9,8 @@ class LoggerContainer extends React.Component {
     // 3000/activities
 
     componentDidMount () {
-        const configObj = {
-            method: "POST",
-            headers: {
-              accepts: "application/json",
-              "content-type": "application/json",
-            },
-            body: JSON.stringify({ user: userInfo }),
-          };
-          
-        fetch("http://localhost:3000/api/v1/login", configObj)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.jwt) {
-                this.storeToken(data.jwt);
-                this.setState({ user: data.user, isSignedIn: true });
-                } 
-                // else {
-                //   this.setState({ authenticationError: data.message });
-                // }
-            });
+        const token = await this.props.getToken();
+        this.fetchActivities(token);
     }
 
     render() {
@@ -37,6 +19,20 @@ class LoggerContainer extends React.Component {
                 <Text>LoggerContainer</Text>
             </View>
         )
+    }
+
+    fetchActivities = (token) => {
+        const configObj = {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        }
+        fetch(`http://localhost:3000/api/v1/user/${userId}/activities`, configObj)
+            .then((response) => response.json())
+            .then((data) => {
+               
+            });
     }
 }
 

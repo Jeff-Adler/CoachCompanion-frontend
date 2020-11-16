@@ -23,6 +23,10 @@ class App extends React.Component {
     }
   }
 
+  getToken() {
+    return AsyncStorage.getItem("token");
+  }
+
   loginHandler = (userInfo) => {
     const configObj = {
       method: "POST",
@@ -96,6 +100,7 @@ class App extends React.Component {
               <NavigationContainer>
                 <MainTabNavigator
                   currentUser={user}
+                  getToken={this.getToken}
                   logoutHandler={this.logoutHandler}
                 />
               </NavigationContainer>
