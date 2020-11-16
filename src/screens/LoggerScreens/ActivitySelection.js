@@ -21,7 +21,7 @@ class ActivitySelection extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style = {styles.container}>
                 <ScrollView>{this.mapActivities()}</ScrollView>
             </View>
         )
