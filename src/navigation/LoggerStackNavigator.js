@@ -7,13 +7,15 @@ import ActivitySelection from '../screens/LoggerScreens/ActivitySelection'
 const LoggerStack = createStackNavigator()
 
 const LoggerStackNavigator = (props) => {
+    const {activities} = props
     return (
         <LoggerStack.Navigator style={styles.container} initialRouteName="Logger">
             <LoggerStack.Screen name="Logger">
-                <LoggerStack.Screen name="Login">
-                    {(props) => <ActivitySelection {...props}/>}
-                </LoggerStack.Screen>
+                {(props) => <ActivitySelection {...props} activities={activities} />}
             </LoggerStack.Screen>
+                {/* <LoggerStack.Screen name="Login">
+                    {(props) => <ActivitySelection {...props}/>}
+                </LoggerStack.Screen> */}
         </LoggerStack.Navigator>
     )
 }

@@ -32,7 +32,7 @@ const MainTabNavigator = (props) => {
             // }}
         >
             <Tab.Screen 
-                name="Log Activity" component={LoggerContainer}
+                name="Log Activity" 
                 children={() => (
                     <LoggerContainer currentUser={currentUser} getToken={getToken}/>
                 )}
