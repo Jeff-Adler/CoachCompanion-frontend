@@ -13,12 +13,14 @@ const LoggerStackNavigator = (props) => {
         <LoggerStack.Navigator style={styles.container} initialRouteName="Logger">
             <LoggerStack.Screen name="Logger">
                 {(props) => <ActivitySelection {...props} 
-                        activities={activities} 
-                        activitySelector={activitySelector} 
+                    activities={activities} 
+                    activitySelector={activitySelector} 
                 />}
             </LoggerStack.Screen>
             <LoggerStack.Screen name="TimePicker">
-                {(props) => <TimeSelection {...props} activity={activity}/>}
+                {(props) => <TimeSelection {...props} 
+                    activity={activity}
+                />}
             </LoggerStack.Screen>
         </LoggerStack.Navigator>
     )

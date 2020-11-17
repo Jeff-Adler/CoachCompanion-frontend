@@ -6,7 +6,7 @@ import { View, ScrollView, StyleSheet } from "react-native";
 
 class ActivitySelection extends React.Component {
 
-    clickHandler = async (post) => {
+    clickHandler = async (activity) => {
         await this.props.activitySelector(activity);
         this.props.navigation.navigate("TimePicker");
     };
@@ -16,7 +16,7 @@ class ActivitySelection extends React.Component {
             return (
                 <ListItem 
                     onPress={() => this.clickHandler(activity)}
-                    key={activity.id} 
+                    key={i} 
                     bottomDivider
                 >
                     <ListItem.Content>
