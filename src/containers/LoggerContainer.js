@@ -6,13 +6,17 @@ class LoggerContainer extends React.Component {
     state = {
                 activities: null,
                 activity: null,
-                time: null
+                // time: null
             }
     //input POST request to input new log
 
     async componentDidMount () {
         const token = await this.props.getToken();
         this.fetchActivities(token);
+    }
+
+    activitySelector = (activityObj) => {
+        this.setState({activity : activityObj})
     }
 
     fetchActivities = (token) => {
@@ -30,12 +34,14 @@ class LoggerContainer extends React.Component {
     }
 
     render() {
-        const {activities} = this.state
+        const {activities,activity} = this.state
         return (
             <View style={styles.container}>
             { this.state.activities ?
                 <LoggerStackNavigator 
                     activities={activities}
+                    activity={activity}
+                    activitySelector={this.activitySelector}
                 />
             : null }
             </View>

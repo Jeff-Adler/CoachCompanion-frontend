@@ -7,7 +7,7 @@ import { View, ScrollView, StyleSheet } from "react-native";
 class ActivitySelection extends React.Component {
 
     clickHandler = async (post) => {
-        // await this.props.fetchHandler(post.id);
+        await this.props.activitySelector(activity);
         this.props.navigation.navigate("TimePicker");
     };
 

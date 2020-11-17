@@ -8,14 +8,17 @@ import { TimeSelection } from "../screens/LoggerScreens/TimeSelection";
 const LoggerStack = createStackNavigator()
 
 const LoggerStackNavigator = (props) => {
-    const {activities} = props
+    const {activities, activity, activitySelector} = props
     return (
         <LoggerStack.Navigator style={styles.container} initialRouteName="Logger">
             <LoggerStack.Screen name="Logger">
-                {(props) => <ActivitySelection {...props} activities={activities} />}
+                {(props) => <ActivitySelection {...props} 
+                        activities={activities} 
+                        activitySelector={activitySelector} 
+                />}
             </LoggerStack.Screen>
             <LoggerStack.Screen name="TimePicker">
-                {(props) => <TimeSelection {...props} />}
+                {(props) => <TimeSelection {...props} activity={activity}/>}
             </LoggerStack.Screen>
         </LoggerStack.Navigator>
     )
