@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import ActivitySelection from '../screens/LoggerScreens/ActivitySelection'
+import { TimeSelection } from "../screens/LoggerScreens/TimeSelection";
 
 const LoggerStack = createStackNavigator()
 
@@ -13,9 +14,9 @@ const LoggerStackNavigator = (props) => {
             <LoggerStack.Screen name="Logger">
                 {(props) => <ActivitySelection {...props} activities={activities} />}
             </LoggerStack.Screen>
-                {/* <LoggerStack.Screen name="Login">
-                    {(props) => <ActivitySelection {...props}/>}
-                </LoggerStack.Screen> */}
+            <LoggerStack.Screen name="TimePicker">
+                {(props) => <ActivitySelection {...props} activities={activities} />}
+            </LoggerStack.Screen>
         </LoggerStack.Navigator>
     )
 }
