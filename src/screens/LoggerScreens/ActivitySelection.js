@@ -28,6 +28,8 @@ class ActivitySelection extends React.Component {
     }
 }
 
+
+//need to stretch bullet items
 const styles = StyleSheet.create({
     container: {
       flex: 1,
