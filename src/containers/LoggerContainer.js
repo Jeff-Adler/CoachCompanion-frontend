@@ -16,8 +16,10 @@ class LoggerContainer extends React.Component {
     }
 
     activitySelector = (activityObj) => {
-        this.setState({activity : activityObj})
+        this.setState({activity : activityObj}, 
+            () => {console.log(this.state.activity)})
     }
+
 
     fetchActivities = (token) => {
         const configObj = {
