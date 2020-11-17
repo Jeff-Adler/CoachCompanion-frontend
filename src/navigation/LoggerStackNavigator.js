@@ -15,7 +15,7 @@ const LoggerStackNavigator = (props) => {
                 {(props) => <ActivitySelection {...props} activities={activities} />}
             </LoggerStack.Screen>
             <LoggerStack.Screen name="TimePicker">
-                {(props) => <ActivitySelection {...props} activities={activities} />}
+                {(props) => <TimeSelection {...props} />}
             </LoggerStack.Screen>
         </LoggerStack.Navigator>
     )

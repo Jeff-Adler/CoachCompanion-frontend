@@ -3,7 +3,11 @@ import { StyleSheet, View } from "react-native";
 import LoggerStackNavigator from "../navigation/LoggerStackNavigator";
 
 class LoggerContainer extends React.Component {
-    state = {activities: null}
+    state = {
+                activities: null,
+                activity: null,
+                time: null
+            }
     //input POST request to input new log
 
     async componentDidMount () {

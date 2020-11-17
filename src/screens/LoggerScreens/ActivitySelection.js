@@ -6,10 +6,19 @@ import { View, ScrollView, StyleSheet } from "react-native";
 
 class ActivitySelection extends React.Component {
 
+    clickHandler = async (post) => {
+        // await this.props.fetchHandler(post.id);
+        this.props.navigation.navigate("TimePicker");
+    };
+
     mapActivities = () => {
         return this.props.activities.map((activity,i) => {
             return (
-                <ListItem key={i} bottomDivider>
+                <ListItem 
+                    onPress={() => this.clickHandler(activity)}
+                    key={activity.id} 
+                    bottomDivider
+                >
                     <ListItem.Content>
                         <ListItem.Title>{activity.title}</ListItem.Title>
                         <ListItem.Subtitle>{activity.category}</ListItem.Subtitle>
