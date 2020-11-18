@@ -8,15 +8,29 @@ class LoggerContainer extends React.Component {
                 activity: null,
                 time: null
             }
-    //input POST request to input new log
 
     async componentDidMount () {
         const token = await this.props.getToken();
         this.fetchActivities(token);
     }
 
-    logActivity = () => {
+    logActivity = async () => {
+        const token = await this.props.getToken();
 
+        const configObj = {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              accepts: "application/json",
+              "content-type": "application/json",
+            },
+            // body: JSON.stringify({ message: messageObj[0] }),
+          };
+
+        fetch(
+        `http://localhost:3000/api/v1/users/${this.props.currentUser.id}/log_activity`,
+        configObj
+        ).then((response) => response.json());
     }
 
     activitySelector = (activityObj) => {
