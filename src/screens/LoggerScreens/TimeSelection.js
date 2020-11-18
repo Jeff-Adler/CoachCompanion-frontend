@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import {View, Button, Platform} from 'react-native';
+import {View, Platform, StyleSheet} from 'react-native';
+import { Button } from "react-native-elements";
+
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export const TimeSelection = (props) => {
@@ -44,6 +46,18 @@ export const TimeSelection = (props) => {
           onChange={onChange}
         />
       )}
+      <Button style={styles.button} title="Submit" onPress={pressHandler} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+    },
+    button: {
+      alignItems: "center",
+    },
+  });
+  
