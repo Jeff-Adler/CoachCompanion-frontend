@@ -24,7 +24,8 @@ class LoggerContainer extends React.Component {
               accepts: "application/json",
               "content-type": "application/json",
             },
-            // body: JSON.stringify({ message: messageObj[0] }),
+            body: JSON.stringify({ activity: this.state.activity,
+                                    time: this.state.time }),
           };
 
         fetch(
