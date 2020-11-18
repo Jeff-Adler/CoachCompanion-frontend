@@ -6,7 +6,7 @@ class LoggerContainer extends React.Component {
     state = {
                 activities: null,
                 activity: null,
-                // time: null
+                time: null
             }
     //input POST request to input new log
 
@@ -16,10 +16,12 @@ class LoggerContainer extends React.Component {
     }
 
     activitySelector = (activityObj) => {
-        this.setState({activity : activityObj}, 
-            () => {console.log(this.state.activity)})
+        this.setState({activity : activityObj})
     }
 
+    timeSelector = (timeObj) => {
+        this.setState({time : timeObj}, () => {console.log(this.state.time)})
+    }
 
     fetchActivities = (token) => {
         const configObj = {
@@ -44,6 +46,7 @@ class LoggerContainer extends React.Component {
                     activities={activities}
                     activity={activity}
                     activitySelector={this.activitySelector}
+                    timeSelector={this.timeSelector}
                 />
             : null }
             </View>

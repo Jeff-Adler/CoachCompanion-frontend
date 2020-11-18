@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import {View, Platform, StyleSheet} from 'react-native';
-import { Button } from "react-native-elements";
+import {View, Platform, Button, StyleSheet} from 'react-native';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -8,6 +7,8 @@ export const TimeSelection = (props) => {
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+
+  const {timeSelector} = props
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -26,6 +27,11 @@ export const TimeSelection = (props) => {
 
   const showTimepicker = () => {
     showMode('time');
+  };
+
+  const pressHandler = () => {
+    timeSelector(date);
+    // props.navigation.navigate("Experience");
   };
 
   return (
