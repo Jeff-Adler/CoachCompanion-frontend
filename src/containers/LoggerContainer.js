@@ -15,6 +15,10 @@ class LoggerContainer extends React.Component {
         this.fetchActivities(token);
     }
 
+    logActivity = () => {
+
+    }
+
     activitySelector = (activityObj) => {
         this.setState({activity : activityObj})
     }
@@ -47,6 +51,7 @@ class LoggerContainer extends React.Component {
                     activity={activity}
                     activitySelector={this.activitySelector}
                     timeSelector={this.timeSelector}
+                    logActivity={this.logActivity}
                 />
             : null }
             </View>

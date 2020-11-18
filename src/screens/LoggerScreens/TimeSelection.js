@@ -31,7 +31,7 @@ export const TimeSelection = (props) => {
 
   const pressHandler = () => {
     timeSelector(date);
-    // props.navigation.navigate("Experience");
+    props.navigation.navigate("SubmitActivity");
   };
 
   return (

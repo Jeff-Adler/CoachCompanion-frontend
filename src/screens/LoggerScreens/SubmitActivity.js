@@ -5,8 +5,10 @@ import { Button } from "react-native-elements";
 
 class SubmitActivity extends React.Component {
 
+    
     pressHandler = () => {
-
+        this.props.logActivity()
+        this.props.navigation.popToTop();
     }
 
     render() {
@@ -26,3 +28,5 @@ const styles = StyleSheet.create({
       justifyContent: "center",
     },
   });
+
+export default SubmitActivity
