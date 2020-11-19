@@ -17,6 +17,10 @@ class LoggerContainer extends React.Component {
     logActivity = async () => {
         const token = await this.props.getToken();
 
+        console.log(this.state.activity)
+        console.log(this.state.time)
+
+        //fix body
         const configObj = {
             method: "POST",
             headers: {
@@ -24,7 +28,7 @@ class LoggerContainer extends React.Component {
               accepts: "application/json",
               "content-type": "application/json",
             },
-            body: JSON.stringify({ activity: this.state.activity,
+            body: JSON.stringify({ activity: this.state.activity.id,
                                     time: this.state.time }),
           };
 
@@ -39,7 +43,7 @@ class LoggerContainer extends React.Component {
     }
 
     timeSelector = (timeObj) => {
-        this.setState({time : timeObj}, () => {console.log(this.state.time)})
+        this.setState({time : timeObj})
     }
 
     fetchActivities = (token) => {
