@@ -22,8 +22,7 @@ class ProfileContainer extends React.Component {
         fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/weekly_activities`, configObj)
             .then((response) => response.json())
             .then((data) => {
-                this.setState({weeklyActivities : data},
-                    () => console.log(this.state.weeklyActivities))
+                this.setState({weeklyActivities : data})
             });
     }
 
