@@ -20,7 +20,6 @@ class LoggerContainer extends React.Component {
         const logObj = {activity_id: this.state.activity.id,
                         timestamp: this.state.time}
 
-        //fix body and API request
         const configObj = {
             method: "POST",
             headers: {
