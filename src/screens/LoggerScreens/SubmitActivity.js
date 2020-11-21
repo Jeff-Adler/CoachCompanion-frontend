@@ -5,7 +5,6 @@ import { Button } from "react-native-elements";
 
 class SubmitActivity extends React.Component {
 
-    
     pressHandler = () => {
         this.props.logActivity()
         this.props.navigation.popToTop();
