@@ -17,6 +17,9 @@ class LoggerContainer extends React.Component {
     logActivity = async () => {
         const token = await this.props.getToken();
 
+        const logObj = {user_id: this.state.activity.user.id,
+                        timestamp: this.state.time}
+
         console.log(this.state.activity)
         console.log(this.state.time)
 
@@ -28,8 +31,7 @@ class LoggerContainer extends React.Component {
               accepts: "application/json",
               "content-type": "application/json",
             },
-            body: JSON.stringify({ activity: this.state.activity.id,
-                                    time: this.state.time }),
+            body: JSON.stringify({ activity: logObj }),
           };
 
         fetch(
