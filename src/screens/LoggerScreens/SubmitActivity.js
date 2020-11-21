@@ -13,7 +13,7 @@ class SubmitActivity extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button onPress={this.pressHandler}/>
+                <Button title="Submit activity!" onPress={this.pressHandler}/>
             </View>
         )
     }
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#fff",
-      alignItems: "center",
+    //   alignItems: "center",
       justifyContent: "center",
     },
   });

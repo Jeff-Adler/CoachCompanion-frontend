@@ -17,7 +17,7 @@ class LoggerContainer extends React.Component {
     logActivity = async () => {
         const token = await this.props.getToken();
 
-        const logObj = {user_id: this.state.activity.user.id,
+        const logObj = {activity_id: this.state.activity.id,
                         timestamp: this.state.time}
 
         //fix body and API request
