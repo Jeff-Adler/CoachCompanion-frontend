@@ -25,6 +25,12 @@ const ActivityStackNavigator = (props) => {
       <ActivityStack.Screen name="Category">
         {(props) => <Category {...props} />} 
       </ActivityStack.Screen>
+      <ActivityStack.Screen name="Audible">
+        {(props) => <Audible {...props} />} 
+      </ActivityStack.Screen>
+      <ActivityStack.Screen name="EnergyType">
+        {(props) => <EnergyType {...props} />} 
+      </ActivityStack.Screen>
       <ActivityStack.Screen name="SubActivity">
         {(props) => <SubActivity {...props} submitActivity={submitActivity} />} 
       </ActivityStack.Screen>
