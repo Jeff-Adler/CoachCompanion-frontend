@@ -16,8 +16,14 @@ const ActivityStackNavigator = (props) => {
 
   return (
     <ActivityStack.Navigator style={styles.container} initialRouteName="Activity">
-      <ActivityStack.Screen name="Activity">
+      <ActivityStack.Screen name="ActivityTitle">
         {(props) => <ActivityTitle {...props} />} 
+      </ActivityStack.Screen>
+      <ActivityStack.Screen name="PointValue">
+        {(props) => <PointValue {...props} />} 
+      </ActivityStack.Screen>
+      <ActivityStack.Screen name="Category">
+        {(props) => <Category {...props} />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="SubActivity">
         {(props) => <SubActivity {...props} submitActivity={submitActivity} />} 
