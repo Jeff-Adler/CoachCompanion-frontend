@@ -6,7 +6,6 @@ import ActivitySelection from '../screens/LoggerScreens/ActivitySelection'
 import { TimeSelection } from "../screens/LoggerScreens/TimeSelection";
 import SubmitActivity from "../screens/LoggerScreens/SubmitActivity";
 
-
 const LoggerStack = createStackNavigator()
 
 const LoggerStackNavigator = (props) => {
