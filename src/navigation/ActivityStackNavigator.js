@@ -7,7 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 // import Category from '../screens/ActivityScreens/Category'
 // import EnergyType from '../screens/ActivityScreens/EnergyType'
 // import PointValue from '../screens/ActivityScreens/PointValue'
-// import SubmitActivity from '../screens/ActivityScreens/SubmitActivity'
+// import SubActivity from '../screens/ActivityScreens/SubActivity'
 
 const ActivityStack = createStackNavigator();
 
@@ -17,7 +17,10 @@ const ActivityStackNavigator = (props) => {
   return (
     <ActivityStack.Navigator style={styles.container} initialRouteName="Activity">
       <ActivityStack.Screen name="Activity">
-        {/* {(props) => <ActivityTitle {...props} submitActivity={submitActivity} />}  */}
+        {(props) => <ActivityTitle {...props} />} 
+      </ActivityStack.Screen>
+      <ActivityStack.Screen name="SubActivity">
+        {(props) => <SubActivity {...props} submitActivity={submitActivity} />} 
       </ActivityStack.Screen>
     </ActivityStack.Navigator>
   );

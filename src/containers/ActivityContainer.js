@@ -3,8 +3,15 @@ import { StyleSheet, View } from "react-native";
 import ActivityStackNavigator from "../navigation/ActivityStackNavigator";
 
 class ActivityContainer extends React.Component {
+    state = {
+        activityTitle = null,
+        pointValue = null,
+        category = null,
+        audible = null,
+        energyType = null
+    }
 
-    submitActivity = async (activityObj) => {
+    submitActivity = async () => {
         const token = await this.props.getToken();
 
         const configObj = {
@@ -14,7 +21,7 @@ class ActivityContainer extends React.Component {
               accepts: "application/json",
               "content-type": "application/json",
             },
-            body: JSON.stringify({ activity: activityObj }),
+            body: JSON.stringify({ activity: this.state }),
           };
 
         fetch(
@@ -26,7 +33,7 @@ class ActivityContainer extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <LoggerStackNavigator 
+                <ActivityStackNavigator 
                     submitActivity={this.submitActivity}
                 />
             </View>
