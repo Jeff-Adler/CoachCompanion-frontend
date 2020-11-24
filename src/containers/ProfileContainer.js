@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
+import ProfileStackNavigator from "../navigation/ProfileStackNavigator"
+
 class ProfileContainer extends React.Component {
     state = {
         weeklyActivities: null,
@@ -38,14 +40,19 @@ class ProfileContainer extends React.Component {
         fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/weekly_tally`, configObj)
             .then((response) => response.json())
             .then((data) => {
-                this.setState({weeklyTally : data}, () => console.log(this.state.weeklyTally))
+                this.setState({weeklyTally : data})
             });
     }
 
     render() {
+        const {weeklyTally} = this.state
         return (
             <View style={styles.container}>
-                <Text>ProfileContainer</Text>
+            { weeklyTally ?
+                <ProfileStackNavigator 
+                    weeklyTally={weeklyTally}
+                />
+            : null }
             </View>
         )
     }
