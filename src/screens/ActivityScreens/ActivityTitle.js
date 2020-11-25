@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Input, Button } from "react-native-elements";
 
+//comment
 class ActivityTitle extends React.Component {
   render() {
     const { onChangeText, activityTitle } = this.props;
