@@ -12,27 +12,27 @@ import { createStackNavigator } from "@react-navigation/stack";
 const ActivityStack = createStackNavigator();
 
 const ActivityStackNavigator = (props) => {
-  const { submitActivity } = props;
+  const { submitActivity, onChangeText, activityTitle } = props;
 
   return (
     <ActivityStack.Navigator style={styles.container} initialRouteName="Activity">
       <ActivityStack.Screen name="ActivityTitle">
-        {(props) => <ActivityTitle {...props} />} 
+        {(props) => <ActivityTitle {...props} onChangeText={onChangeText} activityTitle={activityTitle} />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="PointValue">
-        {(props) => <PointValue {...props} />} 
+        {(props) => <PointValue {...props} onChangeText={onChangeText}  />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="Category">
-        {(props) => <Category {...props} />} 
+        {(props) => <Category {...props} onChangeText={onChangeText}  />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="Audible">
-        {(props) => <Audible {...props} />} 
+        {(props) => <Audible {...props} onChangeText={onChangeText}  />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="EnergyType">
-        {(props) => <EnergyType {...props} />} 
+        {(props) => <EnergyType {...props} onChangeText={onChangeText} />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="SubActivity">
-        {(props) => <SubActivity {...props} submitActivity={submitActivity} />} 
+        {(props) => <SubActivity {...props} onChangeText={onChangeText}  submitActivity={submitActivity} />} 
       </ActivityStack.Screen>
     </ActivityStack.Navigator>
   );

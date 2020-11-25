@@ -11,6 +11,8 @@ class ActivityContainer extends React.Component {
         energyType = null
     }
 
+    onChangeText = (name) => (text) => this.setState({ [name]: text });
+
     submitActivity = async () => {
         const token = await this.props.getToken();
 
@@ -31,10 +33,13 @@ class ActivityContainer extends React.Component {
     }
 
     render() {
+        const { activityTitle  } = this.state
         return (
             <View style={styles.container}>
                 <ActivityStackNavigator 
                     submitActivity={this.submitActivity}
+                    onChangeText={this.onChangeText}
+                    activityTitle={activityTitle}
                 />
             </View>
         )
