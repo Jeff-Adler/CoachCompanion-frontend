@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import ActivityTitle from '../screens/ActivityScreens/ActivityTitle'
 // import Audible from '../screens/ActivityScreens/Audible'
-// import Category from '../screens/ActivityScreens/Category'
+import Category from '../screens/ActivityScreens/Category'
 // import EnergyType from '../screens/ActivityScreens/EnergyType'
 import PointValue from '../screens/ActivityScreens/PointValue'
 // import SubActivity from '../screens/ActivityScreens/SubActivity'

@@ -41,6 +41,7 @@ class ActivityContainer extends React.Component {
                     onChangeText={this.onChangeText}
                     activityTitle={activityTitle}
                     pointValue={pointValue}
+                    category={category}
                 />
             </View>
         )

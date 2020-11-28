@@ -8,8 +8,8 @@ class PointValue extends React.Component {
     return (
       <View style={styles.container}>
         <Input
-          placeholder="Activity"
-          onChangeText={onChangeText("activityTitle")}
+          placeholder="Point Value of Activity"
+          onChangeText={onChangeText("pointValue")}
           value={pointValue}
         />
         <Button title="Next" onPress={() => navigation.navigate("PointValue")} /> 
