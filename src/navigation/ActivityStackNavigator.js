@@ -12,7 +12,7 @@ import PointValue from '../screens/ActivityScreens/PointValue'
 const ActivityStack = createStackNavigator();
 
 const ActivityStackNavigator = (props) => {
-  const { submitActivity, onChangeText, onChangeValue, activityTitle, pointValue, category, audible } = props;
+  const { submitActivity, onChangeText, onChangeValue, activityTitle, pointValue, category, audible, energyType } = props;
 
   return (
     <ActivityStack.Navigator style={styles.container} initialRouteName="ActivityTitle">
@@ -29,10 +29,10 @@ const ActivityStackNavigator = (props) => {
         {(props) => <Audible {...props} onChangeValue={onChangeValue} audible={audible}  />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="EnergyType">
-        {(props) => <EnergyType {...props} onChangeText={onChangeText} />} 
+        {(props) => <EnergyType {...props} onChangeValue={onChangeValue} energyType={energyType} />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="SubActivity">
-        {(props) => <SubActivity {...props} onChangeText={onChangeText}  submitActivity={submitActivity} />} 
+        {(props) => <SubActivity {...props} submitActivity={submitActivity} />} 
       </ActivityStack.Screen>
     </ActivityStack.Navigator>
   );

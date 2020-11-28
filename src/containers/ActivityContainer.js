@@ -43,7 +43,7 @@ class ActivityContainer extends React.Component {
     }
 
     render() {
-        const { activityTitle, pointValue, category, audible  } = this.state
+        const { activityTitle, pointValue, category, audible, energyType  } = this.state
         return (
             <View style={styles.container}>
                 <ActivityStackNavigator 
@@ -54,6 +54,7 @@ class ActivityContainer extends React.Component {
                     pointValue={pointValue}
                     category={category}
                     audible={audible}
+                    energyType={energyType}
                 />
             </View>
         )
