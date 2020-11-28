@@ -3,10 +3,9 @@ import { View, StyleSheet } from "react-native";
 import { CheckBox, Button } from "react-native-elements";
 
 class Category extends React.Component {
-    state = { activity : null }
     
     render () {
-        const {activity} = this.props
+        const {navigation, onChangeValue, category} = this.props
         return (
             <View style={styles.container}>
                 <CheckBox
@@ -14,41 +13,41 @@ class Category extends React.Component {
                 title="Vocation"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={activity === "vocation"}
+                checked={category === "vocation"}
                 value="vocation"
-                // onPress={this.malePressHandler}
+                onPress={() => onChangeValue("vocation")}
                 />
                 <CheckBox
                 center
                 title="Health"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={activity === "health"}
+                checked={category === "health"}
                 value="health"
-                // onPress={this.femalePressHandler}
+                onPress={() => onChangeValue("health")}
                 />
                 <CheckBox
                 center
                 title="Relationship"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={activity === "relationship"}
+                checked={category === "relationship"}
                 value="relationship"
-                // onPress={this.otherPressHandler}
+                onPress={() => onChangeValue("relationship")}
                 />
                 <CheckBox
                 center
                 title="Social"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={activity === "social"}
+                checked={category === "social"}
                 value="social"
-                // onPress={this.otherPressHandler}
+                onPress={() => onChangeValue("social")}
                 />
                 <Button
                 style={styles.button}
                 title="Next"
-                onPress={this.submitHandler}
+                onPress={() => navigation.navigate("Category")}
                 />
             </View>
         )

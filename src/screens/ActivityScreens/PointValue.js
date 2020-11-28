@@ -12,7 +12,7 @@ class PointValue extends React.Component {
           onChangeText={onChangeText("pointValue")}
           value={pointValue}
         />
-        <Button title="Next" onPress={() => navigation.navigate("PointValue")} /> 
+        <Button title="Next" onPress={() => navigation.navigate("Category")} /> 
       </View>
     );
   }
