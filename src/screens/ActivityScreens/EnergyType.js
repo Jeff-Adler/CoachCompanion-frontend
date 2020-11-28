@@ -5,40 +5,48 @@ import { CheckBox, Button } from "react-native-elements";
 class EnergyType extends React.Component {
     
     render () {
-        const {navigation, onChangeValue, category} = this.props
+        const {navigation, onChangeValue, energyType} = this.props
         return (
             <View style={styles.container}>
                 <CheckBox
                 center
-                title="Vocation"
+                title="Energizing"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={category === "vocation"}
-                value="vocation"
-                onPress={() => onChangeValue("category","vocation")}
+                checked={energyType === "energizing"}
+                onPress={() => onChangeValue("energyType","energizing")}
                 />
                 <CheckBox
                 center
-                title="Health"
+                title="Live With"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={category === "health"}
+                checked={energyType === "live with"}
                 value="health"
-                onPress={() => onChangeValue("category" , "health")}
+                onPress={() => onChangeValue("energyType" , "live with")}
                 />
                 <CheckBox
                 center
-                title="Relationship"
+                title="Draining"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={category === "relationship"}
+                checked={energyType === "draining"}
                 value="relationship"
-                onPress={() => onChangeValue("category" , "relationship")}
+                onPress={() => onChangeValue("energyType" , "draining")}
+                />
+                <CheckBox
+                center
+                title="No energy type"
+                checkedIcon="dot-circle-o"
+                uncheckedIcon="circle-o"
+                checked={energyType === ""}
+                value="relationship"
+                onPress={() => onChangeValue("energyType" , "")}
                 />
                 <Button
                 style={styles.button}
                 title="Next"
-                onPress={() => navigation.navigate("Audible")}
+                onPress={() => navigation.navigate("energyType")}
                 />
             </View>
         )
