@@ -4,11 +4,11 @@ import ActivityStackNavigator from "../navigation/ActivityStackNavigator";
 
 class ActivityContainer extends React.Component {
     state = {
-        activityTitle = null,
-        pointValue = null,
-        category = null,
-        audible = null,
-        energyType = null
+        activityTitle : null,
+        pointValue : null,
+        category : null,
+        audible : null,
+        energyType : null
     }
 
     onChangeText = (name) => (text) => this.setState({ [name]: text });
@@ -33,13 +33,14 @@ class ActivityContainer extends React.Component {
     }
 
     render() {
-        const { activityTitle  } = this.state
+        const { activityTitle, pointValue  } = this.state
         return (
             <View style={styles.container}>
                 <ActivityStackNavigator 
                     submitActivity={this.submitActivity}
                     onChangeText={this.onChangeText}
                     activityTitle={activityTitle}
+                    pointValue={pointValue}
                 />
             </View>
         )
