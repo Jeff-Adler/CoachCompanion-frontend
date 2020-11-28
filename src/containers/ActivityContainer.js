@@ -33,7 +33,7 @@ class ActivityContainer extends React.Component {
     }
 
     render() {
-        const { activityTitle, pointValue  } = this.state
+        const { activityTitle, pointValue, category  } = this.state
         return (
             <View style={styles.container}>
                 <ActivityStackNavigator 
