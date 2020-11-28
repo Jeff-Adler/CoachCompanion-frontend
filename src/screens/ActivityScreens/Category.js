@@ -3,36 +3,47 @@ import { View, StyleSheet } from "react-native";
 import { CheckBox, Button } from "react-native-elements";
 
 class Category extends React.Component {
-
+    state = { activity : null }
+    
     render () {
+        const {activity} = this.props
         return (
             <View style={styles.container}>
                 <CheckBox
                 center
-                title="Male"
+                title="Vocation"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={this.state.gender === "male"}
-                value="male"
-                onPress={this.malePressHandler}
+                checked={activity === "vocation"}
+                value="vocation"
+                // onPress={this.malePressHandler}
                 />
                 <CheckBox
                 center
-                title="Female"
+                title="Health"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={this.state.gender === "female"}
-                value="female"
-                onPress={this.femalePressHandler}
+                checked={activity === "health"}
+                value="health"
+                // onPress={this.femalePressHandler}
                 />
                 <CheckBox
                 center
-                title="Other"
+                title="Relationship"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={this.state.gender === "other"}
-                value="other"
-                onPress={this.otherPressHandler}
+                checked={activity === "relationship"}
+                value="relationship"
+                // onPress={this.otherPressHandler}
+                />
+                <CheckBox
+                center
+                title="Social"
+                checkedIcon="dot-circle-o"
+                uncheckedIcon="circle-o"
+                checked={activity === "social"}
+                value="social"
+                // onPress={this.otherPressHandler}
                 />
                 <Button
                 style={styles.button}
