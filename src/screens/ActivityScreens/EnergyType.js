@@ -46,7 +46,7 @@ class EnergyType extends React.Component {
                 <Button
                 style={styles.button}
                 title="Next"
-                onPress={() => navigation.navigate("energyType")}
+                onPress={() => navigation.navigate("SubActivity")}
                 />
             </View>
         )

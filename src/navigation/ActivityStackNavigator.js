@@ -7,7 +7,7 @@ import Audible from '../screens/ActivityScreens/Audible'
 import Category from '../screens/ActivityScreens/Category'
 import EnergyType from '../screens/ActivityScreens/EnergyType'
 import PointValue from '../screens/ActivityScreens/PointValue'
-// import SubActivity from '../screens/ActivityScreens/SubActivity'
+import SubActivity from '../screens/ActivityScreens/SubActivity'
 
 const ActivityStack = createStackNavigator();
 
