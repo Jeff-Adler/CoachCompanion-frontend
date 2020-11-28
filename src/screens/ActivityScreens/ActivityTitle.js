@@ -4,13 +4,13 @@ import { Input, Button } from "react-native-elements";
 
 class ActivityTitle extends React.Component {
   render() {
-    const { navigation, onChangeText, activityTitle } = this.props;
+    const { navigation, onChangeText, title } = this.props;
     return (
       <View style={styles.container}>
         <Input
           placeholder="Activity"
-          onChangeText={onChangeText("activityTitle")}
-          value={activityTitle}
+          onChangeText={onChangeText("title")}
+          value={title}
         />
         <Button title="Next" onPress={() => navigation.navigate("PointValue")} /> 
       </View>

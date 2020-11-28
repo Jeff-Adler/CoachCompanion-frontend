@@ -5,7 +5,7 @@ import { CheckBox, Button } from "react-native-elements";
 class EnergyType extends React.Component {
     
     render () {
-        const {navigation, onChangeValue, energyType} = this.props
+        const {navigation, onChangeValue, energy_type} = this.props
         return (
             <View style={styles.container}>
                 <CheckBox
@@ -13,35 +13,35 @@ class EnergyType extends React.Component {
                 title="Energizing"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={energyType === "energizing"}
-                onPress={() => onChangeValue("energyType","energizing")}
+                checked={energy_type === "energizing"}
+                onPress={() => onChangeValue("energy_type","energizing")}
                 />
                 <CheckBox
                 center
                 title="Live With"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={energyType === "live with"}
+                checked={energy_type === "live with"}
                 value="health"
-                onPress={() => onChangeValue("energyType" , "live with")}
+                onPress={() => onChangeValue("energy_type" , "live with")}
                 />
                 <CheckBox
                 center
                 title="Draining"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={energyType === "draining"}
+                checked={energy_type === "draining"}
                 value="relationship"
-                onPress={() => onChangeValue("energyType" , "draining")}
+                onPress={() => onChangeValue("energy_type" , "draining")}
                 />
                 <CheckBox
                 center
                 title="No energy type"
                 checkedIcon="dot-circle-o"
                 uncheckedIcon="circle-o"
-                checked={energyType === ""}
+                checked={energy_type === ""}
                 value="relationship"
-                onPress={() => onChangeValue("energyType" , "")}
+                onPress={() => onChangeValue("energy_type" , "")}
                 />
                 <Button
                 style={styles.button}

@@ -4,13 +4,12 @@ import { Input, Button } from "react-native-elements";
 
 class PointValue extends React.Component {
   render() {
-    const { navigation, onChangeText, pointValue } = this.props;
+    const { navigation, onChangeText, point_value } = this.props;
     return (
       <View style={styles.container}>
         <Input
           placeholder="Point Value of Activity"
-          onChangeText={onChangeText("pointValue")}
-          value={pointValue}
+          onChangeText={onChangeText("point_value")}
         />
         <Button title="Next" onPress={() => navigation.navigate("Category")} /> 
       </View>
