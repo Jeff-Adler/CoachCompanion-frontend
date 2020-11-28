@@ -3,16 +3,16 @@ import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import ActivityTitle from '../screens/ActivityScreens/ActivityTitle'
-// import Audible from '../screens/ActivityScreens/Audible'
+import Audible from '../screens/ActivityScreens/Audible'
 import Category from '../screens/ActivityScreens/Category'
-// import EnergyType from '../screens/ActivityScreens/EnergyType'
+import EnergyType from '../screens/ActivityScreens/EnergyType'
 import PointValue from '../screens/ActivityScreens/PointValue'
 // import SubActivity from '../screens/ActivityScreens/SubActivity'
 
 const ActivityStack = createStackNavigator();
 
 const ActivityStackNavigator = (props) => {
-  const { submitActivity, onChangeText, onChangeValue, activityTitle, pointValue, category } = props;
+  const { submitActivity, onChangeText, onChangeValue, activityTitle, pointValue, category, audible } = props;
 
   return (
     <ActivityStack.Navigator style={styles.container} initialRouteName="ActivityTitle">
@@ -26,7 +26,7 @@ const ActivityStackNavigator = (props) => {
         {(props) => <Category {...props} onChangeValue={onChangeValue} category={category}  />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="Audible">
-        {(props) => <Audible {...props} onChangeText={onChangeText}  />} 
+        {(props) => <Audible {...props} onChangeValue={onChangeValue} audible={audible}  />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="EnergyType">
         {(props) => <EnergyType {...props} onChangeText={onChangeText} />} 

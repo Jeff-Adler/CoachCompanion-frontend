@@ -15,8 +15,12 @@ class ActivityContainer extends React.Component {
       this.setState({ [name]: text });
     }
 
-    onChangeValue = (value) => {
-      this.setState({ category: value });
+    onChangeValue = (type,value) => {
+      if (type === "audible") {
+        this.setState({ [type] : !this.state.audible });
+      } else {
+        this.setState({ [type] : value });
+      }
     }
 
     submitActivity = async () => {
@@ -39,7 +43,7 @@ class ActivityContainer extends React.Component {
     }
 
     render() {
-        const { activityTitle, pointValue, category  } = this.state
+        const { activityTitle, pointValue, category, audible  } = this.state
         return (
             <View style={styles.container}>
                 <ActivityStackNavigator 
@@ -49,6 +53,7 @@ class ActivityContainer extends React.Component {
                     activityTitle={activityTitle}
                     pointValue={pointValue}
                     category={category}
+                    audible={audible}
                 />
             </View>
         )

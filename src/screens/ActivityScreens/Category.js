@@ -15,7 +15,7 @@ class Category extends React.Component {
                 uncheckedIcon="circle-o"
                 checked={category === "vocation"}
                 value="vocation"
-                onPress={() => onChangeValue("vocation")}
+                onPress={() => onChangeValue("category","vocation")}
                 />
                 <CheckBox
                 center
@@ -24,7 +24,7 @@ class Category extends React.Component {
                 uncheckedIcon="circle-o"
                 checked={category === "health"}
                 value="health"
-                onPress={() => onChangeValue("health")}
+                onPress={() => onChangeValue("category" , "health")}
                 />
                 <CheckBox
                 center
@@ -33,7 +33,7 @@ class Category extends React.Component {
                 uncheckedIcon="circle-o"
                 checked={category === "relationship"}
                 value="relationship"
-                onPress={() => onChangeValue("relationship")}
+                onPress={() => onChangeValue("category" , "relationship")}
                 />
                 <CheckBox
                 center
@@ -42,12 +42,12 @@ class Category extends React.Component {
                 uncheckedIcon="circle-o"
                 checked={category === "social"}
                 value="social"
-                onPress={() => onChangeValue("social")}
+                onPress={() => onChangeValue("category" , "social")}
                 />
                 <Button
                 style={styles.button}
                 title="Next"
-                onPress={() => navigation.navigate("Category")}
+                onPress={() => navigation.navigate("Audible")}
                 />
             </View>
         )
