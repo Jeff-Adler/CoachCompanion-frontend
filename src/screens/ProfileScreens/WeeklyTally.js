@@ -8,7 +8,11 @@ class WeeklyTally extends React.Component {
         const { weeklyTally } = this.props;
         return (
             <View style = {styles.container}>
-                <Text>Weekly Tally: {weeklyTally}</Text>
+                <Text>Weekly Tally: {weeklyTally.total_points}</Text>
+                <Text>Vocation: {weeklyTally.vocation}</Text>
+                <Text>Relationships: {weeklyTally.relationship}</Text>
+                <Text>Social: {weeklyTally.social}</Text>
+                <Text>Health: {weeklyTally.health}</Text>
             </View>
         )
     }
