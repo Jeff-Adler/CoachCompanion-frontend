@@ -2,6 +2,36 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import LoggerStackNavigator from "../navigation/LoggerStackNavigator";
 
+import { useFocusEffect } from '@react-navigation/native';
+
+function RefetchActivities({ getToken, fetchActivities }) {
+    useFocusEffect(
+      React.useCallback(() => {
+        let isActive = true;
+  
+        const refetchActivities = async () => {
+          try {
+            const token = await getToken();
+  
+            if (isActive) {
+                fetchActivities(token);
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        };
+  
+        refetchActivities();
+  
+        return () => {
+          isActive = false;
+        };
+      }, [])
+    );
+  
+    return null;
+  }
+
 class LoggerContainer extends React.Component {
     state = {
                 activities: null,
@@ -63,13 +93,19 @@ class LoggerContainer extends React.Component {
         return (
             <View style={styles.container}>
             { this.state.activities ?
-                <LoggerStackNavigator 
-                    activities={activities}
-                    activity={activity}
-                    activitySelector={this.activitySelector}
-                    timeSelector={this.timeSelector}
-                    logActivity={this.logActivity}
-                />
+                <View style={styles.container}>
+                    <RefetchActivities
+                        getToken={this.props.getToken}
+                        fetchActivities={this.fetchActivities}
+                    />
+                    <LoggerStackNavigator 
+                        activities={activities}
+                        activity={activity}
+                        activitySelector={this.activitySelector}
+                        timeSelector={this.timeSelector}
+                        logActivity={this.logActivity}
+                    />
+                </View>
             : null }
             </View>
         )

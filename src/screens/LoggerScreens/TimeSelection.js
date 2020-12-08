@@ -35,12 +35,12 @@ export const TimeSelection = (props) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <View>
-        <Button onPress={showDatepicker} title="Show date picker!" />
+        <Button onPress={showDatepicker} title="Choose Date" />
       </View>
       <View>
-        <Button onPress={showTimepicker} title="Show time picker!" />
+        <Button onPress={showTimepicker} title="Choose Time" />
       </View>
       {show && (
         <DateTimePicker
@@ -60,6 +60,7 @@ export const TimeSelection = (props) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      alignItems: "center",
       justifyContent: "center",
     },
     button: {
