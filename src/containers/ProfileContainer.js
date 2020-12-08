@@ -3,6 +3,36 @@ import { StyleSheet, View, Text } from "react-native";
 
 import ProfileStackNavigator from "../navigation/ProfileStackNavigator"
 
+import { useFocusEffect } from '@react-navigation/native';
+
+function RefetchWeeklyTally({ getToken, fetchWeeklyTally }) {
+    useFocusEffect(
+      React.useCallback(() => {
+        let isActive = true;
+  
+        const refetchWeeklyTally = async () => {
+          try {
+            const token = await getToken();
+  
+            if (isActive) {
+                fetchWeeklyTally(token);
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        };
+  
+        refetchWeeklyTally();
+  
+        return () => {
+          isActive = false;
+        };
+      }, [])
+    );
+  
+    return null;
+  }
+
 class ProfileContainer extends React.Component {
     state = {
         weeklyActivities: null,
@@ -49,9 +79,15 @@ class ProfileContainer extends React.Component {
         return (
             <View style={styles.container}>
             { weeklyTally ?
+            <View style={styles.container}>
+                <RefetchWeeklyTally
+                    getToken={this.props.getToken}
+                    fetchWeeklyTally={this.fetchWeeklyTally}
+                />
                 <ProfileStackNavigator 
                     weeklyTally={weeklyTally}
                 />
+            </View>
             : null }
             </View>
         )
