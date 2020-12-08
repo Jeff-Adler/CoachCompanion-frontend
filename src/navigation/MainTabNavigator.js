@@ -38,17 +38,17 @@ const MainTabNavigator = (props) => {
                     <LoggerContainer currentUser={currentUser} getToken={getToken}/>
                 )}
             />
+            {/* <Tab.Screen name="Receive Coaching" /> */}
+            <Tab.Screen 
+                name="Weekly Goals"
+                children={() => (
+                    <ProfileContainer currentUser={currentUser} getToken={getToken}/>
+                )}
+            />
             <Tab.Screen 
                 name="Input Activity" 
                 children={() => (
                     <ActivityContainer currentUser={currentUser} getToken={getToken}/>
-                )}
-            />
-            {/* <Tab.Screen name="Receive Coaching" /> */}
-            <Tab.Screen 
-                name="Profile"
-                children={() => (
-                    <ProfileContainer currentUser={currentUser} getToken={getToken}/>
                 )}
             />
         </Tab.Navigator>
