@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
-import {View, Platform, Button, StyleSheet} from 'react-native';
+import {View, Platform, Button as DefaultButton, StyleSheet,Text} from 'react-native';
+import { Button } from "react-native-elements";
+
+
 
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -37,10 +40,10 @@ export const TimeSelection = (props) => {
   return (
     <View style={styles.container}>
       <View>
-        <Button onPress={showDatepicker} title="Choose Date" />
+        <DefaultButton onPress={showDatepicker} title="Choose Date" />
       </View>
       <View>
-        <Button onPress={showTimepicker} title="Choose Time" />
+        <DefaultButton onPress={showTimepicker} title="Choose Time" />
       </View>
       {show && (
         <DateTimePicker
@@ -52,6 +55,7 @@ export const TimeSelection = (props) => {
           onChange={onChange}
         />
       )}
+      <Text>{"\n"}</Text>
       <Button style={styles.button} title="Submit" onPress={pressHandler} />
     </View>
   );
@@ -60,7 +64,8 @@ export const TimeSelection = (props) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: "center",
+      backgroundColor: "#fff",
+      // alignItems: "center",
       justifyContent: "center",
     },
     button: {
