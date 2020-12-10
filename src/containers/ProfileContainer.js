@@ -5,6 +5,7 @@ import ProfileStackNavigator from "../navigation/ProfileStackNavigator"
 
 import { useFocusEffect } from '@react-navigation/native';
 
+//adjust for tally changes
 function RefetchWeeklyTally({ getToken, fetchWeeklyTally }) {
     useFocusEffect(
       React.useCallback(() => {
