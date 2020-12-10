@@ -5,6 +5,7 @@ import { StyleSheet } from "react-native";
 import LoggerContainer from '../containers/LoggerContainer'
 import ProfileContainer from '../containers/ProfileContainer'
 import ActivityContainer from '../containers/ActivityContainer'
+import CoachContainer from '../containers/CoachContainer'
 
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 
@@ -49,6 +50,12 @@ const MainTabNavigator = (props) => {
                 name="Input Activity" 
                 children={() => (
                     <ActivityContainer currentUser={currentUser} getToken={getToken}/>
+                )}
+            />
+            <Tab.Screen 
+                name="Coach" 
+                children={() => (
+                    <CoachContainer currentUser={currentUser} getToken={getToken}/>
                 )}
             />
         </Tab.Navigator>
