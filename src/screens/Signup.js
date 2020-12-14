@@ -1,40 +1,45 @@
-import React from "react";
+import React, {useState} from "react";
 import { Button, View, StyleSheet } from "react-native";
 import { Input } from "react-native-elements";
 
-class Signup extends React.Component {
-  state = {
-    username: "JeffAdler",
-    password: "blink2002",
-  };
+function Signup (props) {
+  const { navigation, signupHandler } = props;
+  const [username,setUsername]  = useState("JeffAdler")
+  const [password,setPassword]  = useState("blink2002")
 
-  onChangeText = (name) => (text) => this.setState({ [name]: text });
+  const onChangeUsername = (text) => {
+    setUsername(text)
+  }
 
-  pressHandler = () => {
-    const { navigation, signupHandler } = this.props;
-    signupHandler(this.state);
+  const onChangePassword = (text) => {
+    setPassword(text)
+  }
+  
+  const submitSignup = () => {
+    signupHandler({
+      username: username,
+      password: password
+    });
     navigation.pop();
   };
 
-  render() {
-    const { username, password } = this.state;
-    return (
-      <View style={styles.container}>
-        <Input
-          placeholder="Username"
-          onChangeText={this.onChangeText("username")}
-          value={username}
-        />
-        <Input
-          placeholder="Password"
-          secureTextEntry={true}
-          onChangeText={this.onChangeText("password")}
-          value={password}
-        />
-        <Button title="Submit" onPress={this.pressHandler} />
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <Input
+        placeholder="Username"
+        onChangeText={onChangeUsername}
+        value={username}
+      />
+      <Input
+        placeholder="Password"
+        secureTextEntry={true}
+        onChangeText={onChangePassword}
+        value={password}
+      />
+      <Button title="Submit" onPress={submitSignup} />
+    </View>
+  );
+
 }
 
 export default Signup;
