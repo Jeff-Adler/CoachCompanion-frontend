@@ -2,19 +2,19 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Input, Button } from "react-native-elements";
 
-class PointValue extends React.Component {
-  render() {
-    const { navigation, onChangeText, point_value } = this.props;
-    return (
-      <View style={styles.container}>
-        <Input
-          placeholder="Point Value of Activity"
-          onChangeText={onChangeText("point_value")}
-        />
-        <Button title="Next" onPress={() => navigation.navigate("Category")} /> 
-      </View>
-    );
-  }
+function PointValue (props) {
+  const { navigation, pointValue, setPointValue } = props;
+
+  return (
+    <View style={styles.container}>
+      <Input
+        placeholder="Point Value of Activity"
+        onChangeText={text => setPointValue(text)}
+        value={pointValue}
+      />
+      <Button title="Next" onPress={() => navigation.navigate("Category")} /> 
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

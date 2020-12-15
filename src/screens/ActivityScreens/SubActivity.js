@@ -1,22 +1,20 @@
 import React from "react";
-
 import { View, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 
-class SubActivity extends React.Component {
+function SubActivity (props) {
+  const {navigation,submitActivity} = props
 
     pressHandler = () => {
-        this.props.submitActivity()
-        this.props.navigation.popToTop();
+        submitActivity()
+        navigation.popToTop();
     }
 
-    render() {
-        return (
-            <View style={styles.container}>
-                <Button title="Create activity!" onPress={this.pressHandler}/>
-            </View>
-        )
-    }
+    return (
+        <View style={styles.container}>
+            <Button title="Create activity!" onPress={pressHandler}/>
+        </View>
+    )
 } 
 
 const styles = StyleSheet.create({

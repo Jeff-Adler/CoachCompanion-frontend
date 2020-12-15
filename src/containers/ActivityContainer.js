@@ -8,54 +8,35 @@ function ActivityContainer (props) {
   const [title,setTitle] = useState(null)
   const [pointValue,setPointValue] = useState(null)
   const [category,setCategory] = useState(null)
-  const [audible,setAudible] = useState(null)
+  const [audible,setAudible] = useState(false)
   const [energyType,setEnergyType] = useState(null)
   
-    // state = {
-    //     title : null,
-    //     point_value : null,
-    //     category : null,
-    //     audible : null,
-    //     energy_type : null
-    // }
+  //Submits new activity to be associated to current user
+  submitActivity = async () => {
+      const token = await getToken();
 
-    // onChangeText = (name) => (text) => {
-    //   this.setState({ [name]: text });
-    // }
+      const activity = {
+        title : title,
+        point_value : pointValue,
+        category : category,
+        audible : audible,
+        energy_type : energyType
+      }
 
-    // onChangeValue = (type,value) => {
-    //   if (type === "audible") {
-    //     this.setState({ [type] : !this.state.audible });
-    //   } else {
-    //     this.setState({ [type] : value });
-    //   }
-    // }
+      const configObj = {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            accepts: "application/json",
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ activity: activity }), 
+        };
 
-    submitActivity = async () => {
-        const token = await getToken();
-
-        const activity = {
-          title : title,
-          point_value : pointValue,
-          category : category,
-          audible : audible,
-          energy_type : energyType
-        }
-
-        const configObj = {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              accepts: "application/json",
-              "content-type": "application/json",
-            },
-            body: JSON.stringify({ activity: activity }), //NEED TO FIX
-          };
-
-        fetch(
-        `http://localhost:3000/api/v1/users/${currentUser.id}/submit_activity`,
-        configObj
-        ).then((response) => response.json());
+      fetch(
+      `http://localhost:3000/api/v1/users/${currentUser.id}/submit_activity`,
+      configObj
+      ).then((response) => response.json());
     }
 
     return (
