@@ -4,6 +4,10 @@ import { CheckBox, Button } from "react-native-elements";
 
 function Category (props) {
   const {navigation, category, setCategory} = props
+
+  const handleCategoryChange = (selectedCategory) => {
+    setCategory(selectedCategory)
+  }
     
   return (
       <View style={styles.container}>
@@ -13,8 +17,7 @@ function Category (props) {
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checked={category === "vocation"}
-          value="vocation"
-          onPress={value => setCategory(value)}
+          onPress={() => handleCategoryChange("vocation")}
           />
           <CheckBox
           center
@@ -22,8 +25,7 @@ function Category (props) {
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checked={category === "health"}
-          value="health"
-          onPress={value => setCategory(value)}
+          onPress={() => handleCategoryChange("health")}
           />
           <CheckBox
           center
@@ -31,8 +33,7 @@ function Category (props) {
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checked={category === "relationship"}
-          value="relationship"
-          onPress={value => setCategory(value)}
+          onPress={() => handleCategoryChange("relationship")}
           />
           <CheckBox
           center
@@ -40,8 +41,7 @@ function Category (props) {
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checked={category === "social"}
-          value="social"
-          onPress={value => setCategory(value)}
+          onPress={() => handleCategoryChange("social")}
           />
           <Button
           style={styles.button}
