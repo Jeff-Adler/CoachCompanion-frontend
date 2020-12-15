@@ -1,9 +1,9 @@
-import React, {useState, useReducer} from "react";
+import React, {useState} from "react";
 import { StyleSheet, View } from "react-native";
 import ActivityStackNavigator from "../navigation/ActivityStackNavigator";
 
 function ActivityContainer (props) {
-  const [currentUser,getToken] = props
+  const {currentUser,getToken} = props
 
   const [title,setTitle] = useState(null)
   const [pointValue,setPointValue] = useState(null)
@@ -12,7 +12,7 @@ function ActivityContainer (props) {
   const [energyType,setEnergyType] = useState(null)
   
   //Submits new activity to be associated to current user
-  submitActivity = async () => {
+  const submitActivity = async () => {
       const token = await getToken();
 
       const activity = {
