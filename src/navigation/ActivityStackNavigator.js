@@ -12,24 +12,24 @@ import SubActivity from '../screens/ActivityScreens/SubActivity'
 const ActivityStack = createStackNavigator();
 
 const ActivityStackNavigator = (props) => {
-  const { submitActivity, onChangeText, onChangeValue, title, point_value, category, audible, energy_type } = props;
+  const { submitActivity, title, pointValue, category, audible, energyType, setTitle, setPointValue, setCategory, setAudible, setEnergyType } = props;
 
   return (
     <ActivityStack.Navigator style={styles.container} initialRouteName="ActivityTitle">
       <ActivityStack.Screen name="ActivityTitle">
-        {(props) => <ActivityTitle {...props} onChangeText={onChangeText} title={title} />} 
+        {(props) => <ActivityTitle {...props} title={title} setTitle={setTitle} />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="PointValue">
-        {(props) => <PointValue {...props} onChangeText={onChangeText} point_value={point_value}  />} 
+        {(props) => <PointValue {...props} pointValue={pointValue} setPointValue={setPointValue}  />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="Category">
-        {(props) => <Category {...props} onChangeValue={onChangeValue} category={category}  />} 
+        {(props) => <Category {...props} category={category} setCategory={setCategory}  />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="Audible">
-        {(props) => <Audible {...props} onChangeValue={onChangeValue} audible={audible}  />} 
+        {(props) => <Audible {...props} audible={audible} setAudible={setAudible}  />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="EnergyType">
-        {(props) => <EnergyType {...props} onChangeValue={onChangeValue} energy_type={energy_type} />} 
+        {(props) => <EnergyType {...props} energyType={energyType} setEnergyType={setEnergyType} />} 
       </ActivityStack.Screen>
       <ActivityStack.Screen name="SubActivity">
         {(props) => <SubActivity {...props} submitActivity={submitActivity} />} 
