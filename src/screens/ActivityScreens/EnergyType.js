@@ -3,7 +3,11 @@ import { View, StyleSheet } from "react-native";
 import { CheckBox, Button } from "react-native-elements";
 
 function EnergyType (props) {
-  const {navigation, energyType, setEnergyType} = this.props
+  const {navigation, energyType, setEnergyType} = props
+
+  const handleEnergyTypeChange = (selectedEnergyType) => {
+    setEnergyType(selectedEnergyType)
+  }
   return (
       <View style={styles.container}>
           <CheckBox
@@ -12,7 +16,7 @@ function EnergyType (props) {
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checked={energyType === "energizing"}
-          onPress={value => setEnergyType(value)}
+          onPress={() => handleEnergyTypeChange("energizing")}
           />
           <CheckBox
           center
@@ -20,8 +24,7 @@ function EnergyType (props) {
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checked={energyType === "live with"}
-          value="health"
-          onPress={value => setEnergyType(value)}
+          onPress={() => handleEnergyTypeChange("live with")}
           />
           <CheckBox
           center
@@ -29,8 +32,7 @@ function EnergyType (props) {
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checked={energyType === "draining"}
-          value="relationship"
-          onPress={value => setEnergyType(value)}
+          onPress={() => handleEnergyTypeChange("draining")}
           />
           <CheckBox
           center
@@ -38,8 +40,7 @@ function EnergyType (props) {
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checked={energyType === ""}
-          value="relationship"
-          onPress={value => setEnergyType(value)}
+          onPress={() => handleEnergyTypeChange("")}
           />
           <Button
           style={styles.button}

@@ -5,8 +5,6 @@ import { CheckBox, Button } from "react-native-elements";
 function Audible(props) {
   const {navigation, audible, setAudible} = props
 
-
-
   return (
       <View style={styles.container}>
           <CheckBox
@@ -15,7 +13,7 @@ function Audible(props) {
           checkedIcon="dot-circle-o"
           uncheckedIcon="circle-o"
           checked={audible === true}
-          onPress={setAudible(!audible)}
+          onPress={() => setAudible(!audible)}
           />
           <Button
           style={styles.button}
