@@ -1,98 +1,87 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, {useState, useEffect} from "react";
+import { useFocusEffect } from '@react-navigation/native';
+import { StyleSheet, View } from "react-native";
 
 import ProfileStackNavigator from "../navigation/ProfileStackNavigator"
 
-import { useFocusEffect } from '@react-navigation/native';
+function ProfileContainer (props) {
+  const {currentUser, getToken} = props
+  const [weeklyActivities, setWeeklyActivities] = useState()
+  const [weeklyTally, setWeeklyTally] = useState()
 
-//adjust for tally changes
-function RefetchWeeklyTally({ getToken, fetchWeeklyTally }) {
-    useFocusEffect(
-      React.useCallback(() => {
-        let isActive = true;
+  useEffect (() => {
+    async function tallyRetrieval() {
+      const token = await getToken();
+      fetchWeeklyActivities(token);
+      fetchWeeklyTally(token);
+    }
+    tallyRetrieval()
+    console.log(weeklyTally)
+  },[])
   
-        const refetchWeeklyTally = async () => {
-          try {
-            const token = await getToken();
-  
-            if (isActive) {
-                fetchWeeklyTally(token);
-            }
-          } catch (e) {
-            console.log(e);
+  useFocusEffect(
+    React.useCallback(() => {
+      let isActive = true;
+
+      const refetchWeeklyTally = async () => {
+        try {
+          const token = await getToken();
+
+          if (isActive) {
+              fetchWeeklyTally(token);
           }
-        };
-  
-        refetchWeeklyTally();
-  
-        return () => {
-          isActive = false;
-        };
-      }, [])
-    );
-  
-    return null;
+        } catch (e) {
+          console.log(e);
+        }
+      };
+
+      refetchWeeklyTally();
+
+      return () => {
+        isActive = false;
+      };
+    }, [])
+  );
+
+  fetchWeeklyActivities = (token) => {
+      const configObj = {
+          method: "GET",
+          headers: {
+              Authorization: `Bearer ${token}`,
+          }
+      }
+      fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/weekly_activities`, configObj)
+          .then((response) => response.json())
+          .then((data) => {
+              setWeeklyActivities(data)
+          });
   }
 
-class ProfileContainer extends React.Component {
-    state = {
-        weeklyActivities: null,
-        weeklyTally: null
-    }
+  fetchWeeklyTally = (token) => {
+      const configObj = {
+          method: "GET",
+          headers: {
+              Authorization: `Bearer ${token}`,
+          }
+      }
+      fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/weekly_tally`, configObj)
+          .then((response) => response.json())
+          .then((data) => {
+              setWeeklyTally(data)
+          });
+  }
 
-    //input request to retrieve all posts from the week
-    async componentDidMount () {
-        const token = await this.props.getToken();
-        this.fetchWeeklyActivities(token);
-        this.fetchWeeklyTally(token);
-    }
-
-    fetchWeeklyActivities = (token) => {
-        const configObj = {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            }
-        }
-        fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/weekly_activities`, configObj)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({weeklyActivities : data})
-            });
-    }
-
-    fetchWeeklyTally = (token) => {
-        const configObj = {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            }
-        }
-        fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/weekly_tally`, configObj)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({weeklyTally : data})
-            });
-    }
-
-    render() {
-        const {weeklyTally} = this.state
-        return (
-            <View style={styles.container}>
-            { weeklyTally ?
-            <View style={styles.container}>
-                <RefetchWeeklyTally
-                    getToken={this.props.getToken}
-                    fetchWeeklyTally={this.fetchWeeklyTally}
-                />
-                <ProfileStackNavigator 
-                    weeklyTally={weeklyTally}
-                />
-            </View>
-            : null }
-            </View>
-        )
-    }
+  return (
+    <View style={styles.container}>
+    { weeklyTally ?
+      <View style={styles.container}>
+          <ProfileStackNavigator 
+              weeklyTally={weeklyTally}
+          />
+      </View>
+    : null }
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

@@ -1,8 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 
-
-//Adjust placeholder to allow for sync
 function CoachContainer () {
     return (
         <View style={styles.container}>
