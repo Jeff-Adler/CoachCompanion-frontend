@@ -9,26 +9,23 @@ function ProfileContainer (props) {
   const [weeklyActivities, setWeeklyActivities] = useState()
   const [weeklyTally, setWeeklyTally] = useState()
 
+  async function retrieveTally () {
+    const token = await getToken();
+    fetchWeeklyTally(token);
+  }
+
   useEffect (() => {
-    async function tallyRetrieval() {
-      const token = await getToken();
-      fetchWeeklyActivities(token);
-      fetchWeeklyTally(token);
-    }
-    tallyRetrieval()
-    console.log(weeklyTally)
+    retrieveTally()
   },[])
-  
+
   useFocusEffect(
     React.useCallback(() => {
       let isActive = true;
 
-      const refetchWeeklyTally = async () => {
+      const refetchWeeklyTally = () => {
         try {
-          const token = await getToken();
-
           if (isActive) {
-              fetchWeeklyTally(token);
+            retrieveTally()
           }
         } catch (e) {
           console.log(e);
