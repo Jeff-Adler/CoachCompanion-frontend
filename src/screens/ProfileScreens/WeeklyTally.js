@@ -7,11 +7,11 @@ function WeeklyTally (props) {
     return (
         <View style = {styles.container}>
             <Text style={{fontWeight: "bold",fontSize: 50}}>Weekly Tally{"\n"}</Text>
-            <Text style={{fontSize: 20}}>Total: {weeklyTally.total_points}{"\n"}</Text>
-            <Text style={{fontSize: 20}}>Vocation: {weeklyTally.vocation}{"\n"}</Text>
-            <Text style={{fontSize: 20}}>Relationships: {weeklyTally.relationship}{"\n"}</Text>
-            <Text style={{fontSize: 20}}>Social: {weeklyTally.social}{"\n"}</Text>
-            <Text style={{fontSize: 20}}>Health: {weeklyTally.health}{"\n"}</Text>
+            <Text style={styles.mainText}>Total: {weeklyTally.total_points}{"\n"}</Text>
+            <Text style={styles.mainText}>Vocation: {weeklyTally.vocation}{"\n"}</Text>
+            <Text style={styles.mainText}>Relationships: {weeklyTally.relationship}{"\n"}</Text>
+            <Text style={styles.mainText}>Social: {weeklyTally.social}{"\n"}</Text>
+            <Text style={styles.mainText}>Health: {weeklyTally.health}{"\n"}</Text>
         </View>
     )
 }
@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
       alignItems: "center",
       justifyContent: "center",
     },
+    mainText: {
+        fontSize: 20
+    }
   });
   
   export default WeeklyTally;
