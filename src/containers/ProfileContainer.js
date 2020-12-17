@@ -9,21 +9,17 @@ function ProfileContainer (props) {
   const [weeklyActivities, setWeeklyActivities] = useState()
   const [weeklyTally, setWeeklyTally] = useState()
 
-  async function retrieveTally () {
-    const token = await getToken();
-    fetchWeeklyTally(token);
-  }
-
+  
   //this retrieves weekly tally once, when profile tab is opened for the first time
   useEffect (() => {
     retrieveTally()
   },[])
-
+  
   //this retrieves weekly tally whenever profile tab is in focus
   useFocusEffect(
     React.useCallback(() => {
       let isActive = true;
-
+      
       const refetchWeeklyTally = () => {
         try {
           if (isActive) {
@@ -35,13 +31,32 @@ function ProfileContainer (props) {
       };
 
       refetchWeeklyTally();
-
+      
       return () => {
         isActive = false;
       };
     }, [])
-  );
+    );
+    
+  async function retrieveTally () {
+    const token = await getToken();
+    fetchWeeklyTally(token);
+  }
 
+  fetchWeeklyTally = (token) => {
+    const configObj = {
+      method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+          }
+    }
+    fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/weekly_tally`, configObj)
+        .then((response) => response.json())
+        .then((data) => {
+          setWeeklyTally(data)
+        });
+      }
+        
   //This function is currently not being used
   fetchWeeklyActivities = (token) => {
       const configObj = {
@@ -54,20 +69,6 @@ function ProfileContainer (props) {
           .then((response) => response.json())
           .then((data) => {
               setWeeklyActivities(data)
-          });
-  }
-
-  fetchWeeklyTally = (token) => {
-      const configObj = {
-          method: "GET",
-          headers: {
-              Authorization: `Bearer ${token}`,
-          }
-      }
-      fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/weekly_tally`, configObj)
-          .then((response) => response.json())
-          .then((data) => {
-              setWeeklyTally(data)
           });
   }
 

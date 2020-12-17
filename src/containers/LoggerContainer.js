@@ -1,115 +1,106 @@
-import React from "react";
+import React, {useState, useEffect}  from "react";
 import { StyleSheet, View } from "react-native";
 import LoggerStackNavigator from "../navigation/LoggerStackNavigator";
 
 import { useFocusEffect } from '@react-navigation/native';
 
-function RefetchActivities({ getToken, fetchActivities }) {
-    useFocusEffect(
-      React.useCallback(() => {
-        let isActive = true;
+function LoggerContainer (props) {
+  const {currentUser,getToken} = props
+
+  const [activities,setActivities] = useState()
+  const [activity,setActivity] = useState()
+  const [time,setTime] = useState()
   
-        const refetchActivities = async () => {
-          try {
-            const token = await getToken();
-  
-            if (isActive) {
-                fetchActivities(token);
-            }
-          } catch (e) {
-            console.log(e);
+  useEffect (() => {
+    retrieveActivities()
+  },[])
+
+  useFocusEffect(
+    React.useCallback(() => {
+      let isActive = true;
+
+      const refetchActivities = () => {
+        try {
+          if (isActive) {
+            retrieveActivities ()
           }
-        };
-  
-        refetchActivities();
-  
-        return () => {
-          isActive = false;
-        };
-      }, [])
+        } catch (e) {
+          console.log(e);
+        }
+      };
+
+      refetchActivities();
+      
+      return () => {
+        isActive = false;
+      };
+    }, [])
     );
-  
-    return null;
+    
+  async function retrieveActivities () {
+    const token = await getToken();
+    fetchActivities(token)
   }
 
-class LoggerContainer extends React.Component {
-    state = {
-                activities: null,
-                activity: null,
-                time: null
-            }
+  logActivity = async () => {
+      const token = await getToken();
 
-    async componentDidMount () {
-        const token = await this.props.getToken();
-        this.fetchActivities(token);
-    }
+      const logObj = {activity_id: activity.id,
+                      timestamp: time}
 
-    logActivity = async () => {
-        const token = await this.props.getToken();
+      const configObj = {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            accepts: "application/json",
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ activity: logObj }),
+        };
 
-        const logObj = {activity_id: this.state.activity.id,
-                        timestamp: this.state.time}
+      fetch(
+      `http://localhost:3000/api/v1/users/${currentUser.id}/log_activity`,
+      configObj
+      ).then((response) => response.json());
+  }
 
-        const configObj = {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              accepts: "application/json",
-              "content-type": "application/json",
-            },
-            body: JSON.stringify({ activity: logObj }),
-          };
+  activitySelector = (activityObj) => {
+    setActivity(activityObj)
+  }
 
-        fetch(
-        `http://localhost:3000/api/v1/users/${this.props.currentUser.id}/log_activity`,
-        configObj
-        ).then((response) => response.json());
-    }
+  timeSelector = (timeObj) => {
+    setTime(timeObj)
+  }
 
-    activitySelector = (activityObj) => {
-        this.setState({activity : activityObj})
-    }
-
-    timeSelector = (timeObj) => {
-        this.setState({time : timeObj})
-    }
-
-    fetchActivities = (token) => {
-        const configObj = {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`,
-            }
+  fetchActivities = (token) => {
+    const configObj = {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
         }
-        fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/activities`, configObj)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({activities : data})
-            });
     }
+    fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/activities`, configObj)
+        .then((response) => response.json())
+        .then((data) => {
+            setActivities(data)
+        });
+  }
 
-    render() {
-        const {activities,activity} = this.state
-        return (
-            <View style={styles.container}>
-            { this.state.activities ?
-                <View style={styles.container}>
-                    <RefetchActivities
-                        getToken={this.props.getToken}
-                        fetchActivities={this.fetchActivities}
-                    />
-                    <LoggerStackNavigator 
-                        activities={activities}
-                        activity={activity}
-                        activitySelector={this.activitySelector}
-                        timeSelector={this.timeSelector}
-                        logActivity={this.logActivity}
-                    />
-                </View>
-            : null }
-            </View>
-        )
-    }
+  return (
+    <View style={styles.container}>
+    {activities ?
+        <View style={styles.container}>
+            <LoggerStackNavigator 
+                activities={activities}
+                activity={activity}
+                activitySelector={activitySelector}
+                timeSelector={timeSelector}
+                logActivity={logActivity}
+            />
+        </View>
+    : null }
+    </View>
+ )
 }
 
 const styles = StyleSheet.create({

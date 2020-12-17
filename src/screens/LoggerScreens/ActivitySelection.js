@@ -1,21 +1,20 @@
 import React from "react";
-
+import { View, ScrollView, StyleSheet } from "react-native";
 import { ListItem } from 'react-native-elements'
 
-import { View, ScrollView, StyleSheet } from "react-native";
+function ActivitySelection (props) {
+    const {navigation,activities,activitySelector} = props
 
-class ActivitySelection extends React.Component {
+    function clickHandler (activity) {
+            activitySelector(activity);
+            navigation.navigate("TimePicker");
+        };
 
-    clickHandler = async (activity) => {
-        await this.props.activitySelector(activity);
-        this.props.navigation.navigate("TimePicker");
-    };
-
-    mapActivities = () => {
-        return this.props.activities.map((activity,i) => {
+    function mapActivities() {
+        return activities.map((activity,i) => {
             return (
                 <ListItem 
-                    onPress={() => this.clickHandler(activity)}
+                    onPress={() => clickHandler(activity)}
                     key={i} 
                     bottomDivider
                 >
@@ -28,15 +27,12 @@ class ActivitySelection extends React.Component {
         })
     }
 
-    render() {
-        return (
-            <View style = {styles.container}>
-                <ScrollView>{this.mapActivities()}</ScrollView>
-            </View>
-        )
-    }
+    return (
+        <View style = {styles.container}>
+            <ScrollView>{mapActivities()}</ScrollView>
+        </View>
+    )
 }
-
 
 //need to stretch bullet items
 const styles = StyleSheet.create({

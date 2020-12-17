@@ -2,16 +2,14 @@ import React, {useState} from 'react';
 import {View, Platform, Button as DefaultButton, StyleSheet,Text} from 'react-native';
 import { Button } from "react-native-elements";
 
-
-
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export const TimeSelection = (props) => {
+  const {navigation,timeSelector} = props
+
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-
-  const {timeSelector} = props
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -34,7 +32,7 @@ export const TimeSelection = (props) => {
 
   const pressHandler = () => {
     timeSelector(date);
-    props.navigation.navigate("SubmitActivity");
+    navigation.navigate("SubmitActivity");
   };
 
   return (
