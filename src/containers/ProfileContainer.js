@@ -14,10 +14,12 @@ function ProfileContainer (props) {
     fetchWeeklyTally(token);
   }
 
+  //this retrieves weekly tally once, when profile tab is opened for the first time
   useEffect (() => {
     retrieveTally()
   },[])
 
+  //this retrieves weekly tally whenever profile tab is in focus
   useFocusEffect(
     React.useCallback(() => {
       let isActive = true;
@@ -40,6 +42,7 @@ function ProfileContainer (props) {
     }, [])
   );
 
+  //This function is currently not being used
   fetchWeeklyActivities = (token) => {
       const configObj = {
           method: "GET",
