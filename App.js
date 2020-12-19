@@ -1,5 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+// import { StatusBar } from 'expo-status-bar';
+import React, {useState,useEffect} from 'react';
 import { StyleSheet, View } from 'react-native';
 
 //Navigation Imports
@@ -9,13 +9,16 @@ import LoginStackNavigator from "./src/navigation/LoginStackNavigator";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-class App extends React.Component {
-  state = {
-    user: null,
-    isSignedIn: false
-  }
+function App() {
+  const [user,setUser] = useState()
+  const [isSignedIn,setSignIn] = useState(false)
 
-  async storeToken(jwt) {
+  // state = {
+  //   user: null,
+  //   isSignedIn: false
+  // }
+
+  async function storeToken(jwt) {
     try {
       await AsyncStorage.setItem("token", jwt);
     } catch (error) {
@@ -23,7 +26,7 @@ class App extends React.Component {
     }
   }
 
-  getToken() {
+  function getToken() {
     return AsyncStorage.getItem("token");
   }
 
@@ -41,8 +44,10 @@ class App extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.jwt) {
-          this.storeToken(data.jwt);
-          this.setState({ user: data.user, isSignedIn: true });
+          storeToken(data.jwt);
+          setUser(data.user)
+          setSignIn(true)
+          // this.setState({ user: data.user, isSignedIn: true });
         } 
         // else {
         //   this.setState({ authenticationError: data.message });
@@ -64,14 +69,16 @@ class App extends React.Component {
       .then((response) => response.json())
       .then((data) => {
         if (data.jwt) {
-          this.setState(
-            {
-              user: data.user,
-            },
-            () => {
-              this.loginHandler(userObj);
-            }
-          );
+          setUser(data.user)
+          loginHandler(userObj)
+          // this.setState(
+          //   {
+          //     user: data.user,
+          //   },
+          //   () => {
+          //     this.loginHandler(userObj);
+          //   }
+          // );
         } 
         // else {
         //   this.setState({
@@ -84,41 +91,40 @@ class App extends React.Component {
   logoutHandler = async () => {
     try {
       await AsyncStorage.removeItem("token");
-      this.setState({ isSignedIn: false });
+      setSignIn(false);
     } catch (exception) {
       console.log("Couldn't logout");
     }
   };
 
-  render () {
-    const {isSignedIn , user} = this.state
-    return (
-      <View style = {styles.container}>
-        {
-          isSignedIn === true ? (
-            <View style = {styles.container}>
-              <NavigationContainer>
-                <MainTabNavigator
-                  currentUser={user}
-                  getToken={this.getToken}
-                  logoutHandler={this.logoutHandler}
-                />
-              </NavigationContainer>
-            </View>
-          ) : (
-            <View style = {styles.container}> 
-              <NavigationContainer>
-                <LoginStackNavigator
-                  loginHandler={this.loginHandler}
-                  signupHandler={this.signupHandler}
-                />
-              </NavigationContainer>
-            </View>
-          )
-        }
-      </View>
-    )
-  }
+
+  return (
+    <View style = {styles.container}>
+      {
+        isSignedIn === true ? (
+          <View style = {styles.container}>
+            <NavigationContainer>
+              <MainTabNavigator
+                currentUser={user}
+                getToken={getToken}
+                logoutHandler={logoutHandler}
+              />
+            </NavigationContainer>
+          </View>
+        ) : (
+          <View style = {styles.container}> 
+            <NavigationContainer>
+              <LoginStackNavigator
+                loginHandler={loginHandler}
+                signupHandler={signupHandler}
+              />
+            </NavigationContainer>
+          </View>
+        )
+      }
+    </View>
+  )
+
 }
 
 export default App
