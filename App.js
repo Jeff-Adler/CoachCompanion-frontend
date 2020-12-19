@@ -1,5 +1,4 @@
-// import { StatusBar } from 'expo-status-bar';
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, View } from 'react-native';
 
 //Navigation Imports
@@ -12,11 +11,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 function App() {
   const [user,setUser] = useState()
   const [isSignedIn,setSignIn] = useState(false)
-
-  // state = {
-  //   user: null,
-  //   isSignedIn: false
-  // }
 
   async function storeToken(jwt) {
     try {
@@ -47,11 +41,7 @@ function App() {
           storeToken(data.jwt);
           setUser(data.user)
           setSignIn(true)
-          // this.setState({ user: data.user, isSignedIn: true });
         } 
-        // else {
-        //   this.setState({ authenticationError: data.message });
-        // }
       });
   };
 
@@ -71,20 +61,7 @@ function App() {
         if (data.jwt) {
           setUser(data.user)
           loginHandler(userObj)
-          // this.setState(
-          //   {
-          //     user: data.user,
-          //   },
-          //   () => {
-          //     this.loginHandler(userObj);
-          //   }
-          // );
         } 
-        // else {
-        //   this.setState({
-        //     signupError: data.error,
-        //   });
-        // }
       });
   };
 
@@ -96,7 +73,6 @@ function App() {
       console.log("Couldn't logout");
     }
   };
-
 
   return (
     <View style = {styles.container}>
